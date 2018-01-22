@@ -14,23 +14,23 @@ import LoginForm from "./LoginForm";
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { staffID: "", authentication: "", pressed: false };
+		this.state = { userId: "", password: "", pressed: false };
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({ pressed: false });
 	}
 	handleLogin(e) {
-		const staffID = this.state.staffID;
-		const authentication = this.state.authentication;
+		const userId = this.state.userId;
+		const password = this.state.password;
 		this.props.onSubmit({
-			staffID,
-			authentication
+			userId,
+			password
 		});
 		this.setState({ pressed: true });
 	}
 	canBeSubmit() {
-		const { staffID, authentication } = this.state;
-		return staffID.length > 0 && authentication.length > 0;
+		const { userId, password } = this.state;
+		return userId.length > 0 && password.length > 0;
 	}
 	render() {
 		this.props.errorMessage && alert("Wrong Staff ID or Password");
@@ -49,18 +49,18 @@ class Login extends React.Component {
 					style={[s.flx_i, s.pt3, s.ph6]}
 				>
 					<LoginForm
-						value={this.state.staffID}
+						value={this.state.userId}
 						caption="Staff ID"
-						onChangeText={textID => this.setState({ staffID: textID })}
+						onChangeText={textID => this.setState({ userId: textID })}
 						secure={false}
 						thumbnail="user"
 						length={7}
 					/>
 					<LoginForm
-						value={this.state.authentication}
+						value={this.state.password}
 						caption="Password"
 						onChangeText={textPassword =>
-							this.setState({ authentication: textPassword })
+							this.setState({ password: textPassword })
 						}
 						secure={true}
 						thumbnail="lock"

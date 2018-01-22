@@ -4,9 +4,7 @@ import Login from "./Login";
 const LoginIndex = () => {
 	return (
 		<Login
-			onSubmit={({ staffID, authentication }) =>
-				console.log({ staffID, authentication })
-			}
+			onSubmit={({ userId, password }) => console.log({ userId, password })}
 		/>
 	);
 };

@@ -31,7 +31,8 @@ NativeTachyons.build(
 				greylight: "#dcdcdc",
 				greydark: "#c4c4c4",
 				black: "#050505",
-				yellow: "#ffd700"
+				yellow: "#ffd700",
+				lightblue: "#5ac8fa"
 			}
 		}
 	},
