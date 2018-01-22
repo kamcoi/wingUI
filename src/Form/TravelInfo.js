@@ -25,17 +25,19 @@ const TravelInfo = ({
 	error
 }) => {
 	return (
-		<View style={[s.bg_white, s.ph4, s.pv4, s.mh4, s.mv3, s.br3]}>
-			<Text style={[s.pb4, s.f3]}>Destination</Text>
+		<View style={[s.bg_white, s.ph4, s.pv5, s.mh4, s.mv3, s.br3]}>
+			<Text style={[s.blackishGrey, s.pb4, s.f3]}>Destination</Text>
 			<TextInputComponent
 				value={navigate ? request.destination : destination}
 				caption="e.g. Jakarta, Indonesia"
 				onChangeText={onChangeText1}
 			/>
-			<Text style={[s.pb3, s.f3]}>Travel Type</Text>
+			<Text style={[s.blackishGrey, s.pb3, s.f3]}>Travel Type</Text>
 			<View style={[s.mb5]}>
 				<Dropdown
-					placeholder="Select your position.."
+					value={navigate ? request.travelType : travelType}
+					style={[s.b__greyishWhite]}
+					placeholder="e.g. Meeting"
 					labelHeight={10}
 					label=""
 					data={travelCategory}
@@ -44,7 +46,7 @@ const TravelInfo = ({
 			</View>
 			<View style={[s.flx_row, s.jcsb, s.pb5]}>
 				<View style={[s.pb1, s.bb, s.b__greyishWhite]}>
-					<Text style={[s.pb4, s.f3, error && s.red]}>
+					<Text style={[s.blackishGrey, s.pb4, s.f3, error && s.red]}>
 						{error ? "Invalid Start Date" : "Start Date"}
 					</Text>
 					<DateComponent
@@ -57,7 +59,7 @@ const TravelInfo = ({
 					/>
 				</View>
 				<View style={[s.pb1, s.bb, s.b__greyishWhite]}>
-					<Text style={[s.pb4, s.f3, error && s.red]}>
+					<Text style={[s.blackishGrey, s.pb4, s.f3, error && s.red]}>
 						{error ? "Invalid End Date" : "End Date"}
 					</Text>
 					<DateComponent
@@ -70,7 +72,7 @@ const TravelInfo = ({
 					/>
 				</View>
 			</View>
-			<Text style={[s.pb4, s.f3]}>Justification</Text>
+			<Text style={[s.blackishGrey, s.pb4, s.f3]}>Justification</Text>
 			<TextInput
 				value={navigate ? request.justificationText : justification}
 				placeholder="Provide justification for your travel..."
@@ -80,8 +82,9 @@ const TravelInfo = ({
 				onContentSizeChange={onContentSizeChange}
 				style={[
 					{
-						borderBottomWidth: 0.5,
-						borderColor: "#c4c4c4"
+						borderBottomWidth: 1,
+						borderColor: "#f3f3f3",
+						lineHeight: 20
 					},
 					{
 						height: Math.max(100, height)

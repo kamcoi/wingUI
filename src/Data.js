@@ -11,11 +11,10 @@ export const request = [
 		id: 1001,
 		notification: true,
 		deleted: false,
-		timeStamp: "15 Jan 2018, 8.00am",
 		destination: "Hanoi, Vietnam",
 		travelFrom: 1464671242365,
 		travelUntil: 1465971232365,
-		travelType: "Digital Disruption Conference : Industrial Revolution 4.0",
+		travelType: "Conference",
 		justificationText:
 			"Need to explore and learn on the latest services offered by the startups especially within SEA region",
 		requestorName: "Ali Muhd Wasil bin Ali Absar",
@@ -53,7 +52,7 @@ export const request = [
 				id: 3,
 				deleted: false,
 				staffName: "Choo Chia Pooh",
-				staffDivision: "Group Brand and Communicatin"
+				staffDivision: "Group Brand and Communication"
 			}
 		],
 		comments: [
@@ -76,7 +75,6 @@ export const request = [
 		id: 1002,
 		notification: true,
 		deleted: false,
-		timeStamp: "1 Sept 2017, 8.00am",
 		destination: "West Bank",
 		travelFrom: 146462423652,
 		travelUntil: 1515738192906,

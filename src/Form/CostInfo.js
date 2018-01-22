@@ -17,12 +17,12 @@ const CostInfo = ({
 	navigate
 }) => {
 	return (
-		<View style={[s.bg_white, s.ph4, s.pv4, s.mh4, s.mv3, s.br3]}>
-			<Text style={[s.pb4, s.f3, error && s.red]}>
+		<View style={[s.bg_white, s.ph4, s.pv5, s.mh4, s.mv3, s.br3]}>
+			<Text style={[s.blackishGrey, s.pb4, s.f3, error && s.red]}>
 				{error ? "Invalid Cost" : "Cost"}
 			</Text>
 			<View style={[s.flx_row, s.bb, s.b__greyishWhite, s.mb4]}>
-				<Text style={[s.pb4, s.f3, s.pt3, s.pr3]}>RM</Text>
+				<Text style={[s.blackishGrey, s.pb4, s.f3, s.pt3, s.pr3]}>RM</Text>
 				<TextInputComponent
 					value={navigate ? request.cost.toString() : cost}
 					type={"numeric"}
@@ -30,11 +30,11 @@ const CostInfo = ({
 					onChangeText={onChangeText1}
 				/>
 			</View>
-			<Text style={[s.pb4, s.f3, error && s.red]}>
+			<Text style={[s.blackishGrey, s.pb4, s.f3, error && s.red]}>
 				{error ? "Invalid Budget" : "Budget"}
 			</Text>
 			<View style={[s.flx_row, s.bb, s.b__greyishWhite, s.mb4]}>
-				<Text style={[s.pb4, s.f3, s.pt3, s.pr3]}>RM</Text>
+				<Text style={[s.blackishGrey, s.pb4, s.f3, s.pt3, s.pr3]}>RM</Text>
 				<TextInputComponent
 					value={navigate ? request.budget.toString() : budget}
 					type={"numeric"}
@@ -42,7 +42,7 @@ const CostInfo = ({
 					onChangeText={onChangeText2}
 				/>
 			</View>
-			<Text style={[s.pb3, s.f3]}>Cost Category</Text>
+			<Text style={[s.blackishGrey, s.pb3, s.f3]}>Cost Category</Text>
 			<Dropdown
 				value={navigate ? request.costCategory : costCategory}
 				placeholder="e.g. TM Sponsorship"
@@ -51,21 +51,21 @@ const CostInfo = ({
 				data={costCategoryData}
 				onChangeText={onChangeText3}
 			/>
-			{costCategory == "Cost Centre" &&
-			request.costCategory == "Cost Centre" ? (
-				<Text style={[s.pv4, s.f3]}>Cost Centre</Text>
-			) : null}
-			{costCategory == "Cost Centre" &&
-			request.costCategory == "Cost Centre" ? (
-				<View style={[s.pt1, s.bb, s.b__greyishWhite, s.pb3]}>
-					<TextInputComponent
-						value={navigate ? request.costCentre : costCentre}
-						type={"default"}
-						caption="e.g. BMCE02"
-						onChangeText={onChangeText4}
-					/>
-				</View>
-			) : null}
+			<Text style={[s.blackishGrey, s.pv4, s.f3]}>
+				{costCategory == "Sponsorship (EEIU)" ? "Sponsorsed by" : "Cost Centre"}
+			</Text>
+			<View style={[s.pt1, s.bb, s.b__greyishWhite, s.pb3]}>
+				<TextInputComponent
+					value={navigate ? request.costCentre : costCentre}
+					type={"default"}
+					caption={
+						costCategory == "Sponsorship (EEIU)"
+							? "e.g. Khazanah Nasional"
+							: "e.g. BMCE02"
+					}
+					onChangeText={onChangeText4}
+				/>
+			</View>
 		</View>
 	);
 };

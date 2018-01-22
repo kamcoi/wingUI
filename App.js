@@ -13,7 +13,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<View style={[s.flx_i]}>
-				<SummaryIndex />
+				<FormIndex />
 			</View>
 		);
 	}
@@ -32,7 +32,8 @@ NativeTachyons.build(
 				greydark: "#c4c4c4",
 				black: "#050505",
 				yellow: "#ffd700",
-				lightblue: "#5ac8fa"
+				lightblue: "#5ac8fa",
+				blackishGrey: "#4d4d4d"
 			}
 		}
 	},

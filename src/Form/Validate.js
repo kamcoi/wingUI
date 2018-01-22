@@ -27,6 +27,7 @@ export function enableButton(
 	costCategory,
 	costCentre,
 	nominatorName,
+	nominator2Name,
 	endorserName,
 	approverName
 ) {
@@ -39,7 +40,9 @@ export function enableButton(
 		cost.length > 0 &&
 		budget.length > 0 &&
 		costCategory.length > 0 &&
+		costCentre.length > 0 &&
 		nominatorName.length > 0 &&
+		nominator2Name.length > 0 &&
 		endorserName.length > 0 &&
 		approverName.length > 0
 	);

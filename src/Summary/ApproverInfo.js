@@ -11,7 +11,12 @@ const ApproverInfo = ({ request }) => {
 				staffName={request.nominator2Name}
 			/>
 			<ApproverSingle title={"Endorser"} staffName={request.endorserName} />
-			<ApproverSingle title={"APPROVER"} staffName={request.approverName} />
+			<View>
+				<Text style={[s.pb4, s.greydark]}>Approver</Text>
+				<View style={[s.bb, s.b__greyishWhite, s.pb3]}>
+					<Text>{request.approverName}</Text>
+				</View>
+			</View>
 		</View>
 	);
 };
@@ -19,7 +24,7 @@ const ApproverInfo = ({ request }) => {
 const ApproverSingle = ({ title, staffName }) => {
 	return (
 		<View>
-			<Text style={[s.pb4]}>{title}</Text>
+			<Text style={[s.pb4, s.greydark]}>{title}</Text>
 			<View style={[s.bb, s.b__greyishWhite, s.pb3, s.mb5]}>
 				<Text>{staffName}</Text>
 			</View>

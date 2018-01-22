@@ -25,7 +25,7 @@ class Summary extends React.Component {
 		const { user, request } = this.props;
 		const { pressed } = this.state;
 		const forRequest = false;
-		const fromForm = true;
+		const fromForm = false;
 		return (
 			<View style={[s.flx_i, s.bg_greyishWhite]}>
 				<NavigationBar
@@ -41,15 +41,15 @@ class Summary extends React.Component {
 					}}
 				/>
 				<ScrollView style={[s.flx_i, s.ph4]}>
-					<Text style={[s.pv3, s.greydark]}>DESCRIPTION</Text>
+					<Text style={[s.pv3, s.orange]}>DESCRIPTION</Text>
 					<TravelInfo request={request} />
 					{fromForm ? null : <Text style={[s.pv3, s.greydark]}>STATUS</Text>}
 					{fromForm ? null : <TrackingBar request={request} />}
-					<Text style={[s.pv3, s.greydark]}>PROFILE</Text>
+					<Text style={[s.pv3, s.orange]}>PROFILE</Text>
 					<ProfileInfo user={user} request={request} />
-					<Text style={[s.pv3, s.greydark]}>COST</Text>
+					<Text style={[s.pv3, s.orange]}>COST</Text>
 					<CostInfo request={request} />
-					<Text style={[s.pv3, s.greydark]}>APPROVER</Text>
+					<Text style={[s.pv3, s.orange]}>APPROVER</Text>
 					<ApproverInfo request={request} />
 				</ScrollView>
 				{!fromForm && forRequest ? null : (

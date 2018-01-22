@@ -236,7 +236,7 @@ class Form extends React.Component {
 					/>
 				</ScrollView>
 				<TouchableOpacity
-					disabled={!isEnabled}
+					disabled={fromSummary ? pressed : !isEnabled}
 					onPress={e => this.handleNext(e)}
 					style={[
 						s.bg_orange,

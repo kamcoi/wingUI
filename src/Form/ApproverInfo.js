@@ -4,6 +4,7 @@ import { styles as s } from "react-native-style-tachyons";
 import { Dropdown } from "react-native-material-dropdown";
 
 import { designation } from "../Data";
+import { validatePosition } from "./Validate";
 
 const ApproverInfo = ({
 	navigate,
@@ -17,9 +18,9 @@ const ApproverInfo = ({
 }) => {
 	return (
 		<View style={[s.bg_white, s.ph4, s.pv4, s.mh4, s.mv3, s.br3]}>
-			<Text style={[s.pb1, s.f3, s.pt3, s.pr3]}>Position</Text>
+			<Text style={[s.blackishGrey, s.pb1, s.f3, s.pt3, s.pr3]}>Position</Text>
 			<Dropdown
-				value={requestorPosition}
+				value={navigate ? request.requestorPosition : requestorPosition}
 				placeholder="Select your position.."
 				labelHeight={10}
 				label=""
@@ -116,21 +117,33 @@ const ApproverList = ({
 	return (
 		<View>
 			<ApproverSingle
+				isDisabled={false}
 				test={"+ Add Nominator 1"}
 				details={nominator1Name}
 				data={navigate ? request.nominatorName : nominator}
 			/>
 			<ApproverSingle
+				isDisabled={
+					navigate
+						? !validatePosition(request.requestorPosition)
+						: !validatePosition(list)
+				}
 				test={"+ Add Nominator 2"}
 				details={nominator2Name}
-				data={navigate ? request.nominator2Name : nominator2}
+				data={
+					navigate
+						? request.nominator2Name
+						: validatePosition(list) ? nominator2 : "None"
+				}
 			/>
 			<ApproverSingle
+				isDisabled={false}
 				test={"+ Add Endorser"}
 				details={endorserName}
 				data={navigate ? request.endorserName : endorser}
 			/>
 			<ApproverSingle
+				isDisabled={false}
 				test={"+ Add Approver"}
 				details={endorserName}
 				data={navigate ? request.approverName : approver}
@@ -139,16 +152,16 @@ const ApproverList = ({
 	);
 };
 
-const ApproverSingle = ({ test, details, data }) => {
+const ApproverSingle = ({ test, details, data, isDisabled }) => {
 	return (
 		<View style={[s.pb4]}>
-			<TouchableOpacity onPress={() => null}>
-				<Text style={[s.f3, s.pv4, s.orange]}>
+			<TouchableOpacity disabled={isDisabled} onPress={() => null}>
+				<Text style={[s.f3, s.pv4, s.orange, isDisabled && s.greydark]}>
 					{test} ({details})
 				</Text>
 			</TouchableOpacity>
 
-			<View style={[s.bb, s.b__greylight]}>
+			<View style={[s.bb, s.b__greyishWhite]}>
 				<Text style={[s.black, s.pb3]}>{data}</Text>
 			</View>
 		</View>
