@@ -25,7 +25,7 @@ class Summary extends React.Component {
 		const { user, request } = this.props;
 		const { pressed } = this.state;
 		const forRequest = false;
-		const fromForm = false;
+		const fromForm = true;
 		return (
 			<View style={[s.flx_i, s.bg_greyishWhite]}>
 				<NavigationBar
