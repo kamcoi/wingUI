@@ -21,6 +21,7 @@ import ProfileInfo from "./ProfileInfo";
 import TravelInfo from "./TravelInfo";
 import CostInfo from "./CostInfo";
 import ApproverInfo from "./ApproverInfo";
+import Buttons from "./Buttons";
 
 class Form extends React.Component {
 	constructor(props) {
@@ -60,7 +61,7 @@ class Form extends React.Component {
 		this.setState({ requestorPosition: value });
 		this.setState({ nominated2: check ? false : true });
 	}
-	handleNext(e) {
+	handleSubmit(e) {
 		const {
 			requestorName,
 			requestorDivision,
@@ -141,6 +142,7 @@ class Form extends React.Component {
 			costCategory,
 			costCentre,
 			nominatorName,
+			nominator2Name,
 			endorserName,
 			approverName
 		);
@@ -159,31 +161,17 @@ class Form extends React.Component {
 					<Segment title={"PROFILE"} thumbnail={"user"} />
 					<ProfileInfo
 						user={user}
-						request={request}
 						staffs={staffs}
-						navigate={fromSummary}
-						onPress={staff =>
-							this.setState({
-								staffs: [
-									{
-										id: 1,
-										deleted: false,
-										staffName: "Mohammad Ali bin Kassim",
-										staffDivision: "Group Strategy"
-									}
-								]
-							})
-						}
+						onPress1={this.props.removeStaff({ deleted: true })}
+						onPress={staff => this.setState({ staffs: test })}
 					/>
 					<Segment title={"TRAVEL"} thumbnail={"location"} />
 					<TravelInfo
-						request={request}
 						destination={destination}
 						travelType={travelType}
 						travelFrom={travelFrom}
 						travelUntil={travelUntil}
 						justification={justification}
-						navigate={fromSummary}
 						height={height}
 						error={errorDate}
 						onChangeText1={destinationText =>
@@ -214,8 +202,6 @@ class Form extends React.Component {
 						costCategory={costCategory}
 						costCentre={costCentre}
 						error={errorCost}
-						navigate={fromSummary}
-						request={request}
 						onChangeText1={costText => this.setState({ cost: costText })}
 						onChangeText2={budgetText => this.setState({ budget: budgetText })}
 						onChangeText3={value => this.handleCostCategory({ value })}
@@ -226,8 +212,6 @@ class Form extends React.Component {
 					<Segment title={"APPROVAL"} thumbnail={"check"} />
 					<ApproverInfo
 						requestorPosition={requestorPosition}
-						navigate={fromSummary}
-						request={request}
 						nominator={nominatorName}
 						nominator2={nominator2Name}
 						endorser={endorserName}
@@ -235,22 +219,10 @@ class Form extends React.Component {
 						onChangeText={value => this.handleApproval({ value })}
 					/>
 				</ScrollView>
-				<TouchableOpacity
-					disabled={fromSummary ? pressed : !isEnabled}
-					onPress={e => this.handleNext(e)}
-					style={[
-						s.bg_orange,
-						s.jcc,
-						s.aic,
-						s.pv4,
-						s.mh4,
-						s.mv4,
-						s.br4,
-						!isEnabled && s.bg_greydark
-					]}
-				>
-					<Text>NEXT</Text>
-				</TouchableOpacity>
+				<Buttons
+					onPress={e => this.handleSubmit(e)}
+					buttonConfig={!isEnabled}
+				/>
 			</KeyboardAvoidingView>
 		);
 	}
@@ -268,3 +240,18 @@ const Segment = ({ title, thumbnail }) => {
 };
 
 export default Form;
+
+const test = [
+	{
+		id: 1,
+		deleted: false,
+		staffName: "Mohammad Ali bin Kassim",
+		staffDivision: "Group Strategy"
+	},
+	{
+		id: 2,
+		deleted: false,
+		staffName: "Hana Nuraisyah binti Mohammad Hafiz",
+		staffDivision: "Group Strategy"
+	}
+];

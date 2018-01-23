@@ -8,7 +8,6 @@ import moment from "moment";
 import { travelCategory } from "../Data";
 
 const TravelInfo = ({
-	request,
 	destination,
 	travelType,
 	travelFrom,
@@ -20,7 +19,6 @@ const TravelInfo = ({
 	onDateChange2,
 	onChangeText3,
 	onContentSizeChange,
-	navigate,
 	height,
 	error
 }) => {
@@ -28,14 +26,14 @@ const TravelInfo = ({
 		<View style={[s.bg_white, s.ph4, s.pv5, s.mh4, s.mv3, s.br3]}>
 			<Text style={[s.blackishGrey, s.pb4, s.f3]}>Destination</Text>
 			<TextInputComponent
-				value={navigate ? request.destination : destination}
+				value={destination}
 				caption="e.g. Jakarta, Indonesia"
 				onChangeText={onChangeText1}
 			/>
 			<Text style={[s.blackishGrey, s.pb3, s.f3]}>Travel Type</Text>
 			<View style={[s.mb5]}>
 				<Dropdown
-					value={navigate ? request.travelType : travelType}
+					value={travelType}
 					style={[s.b__greyishWhite]}
 					placeholder="e.g. Meeting"
 					labelHeight={10}
@@ -49,32 +47,18 @@ const TravelInfo = ({
 					<Text style={[s.blackishGrey, s.pb4, s.f3, error && s.red]}>
 						{error ? "Invalid Start Date" : "Start Date"}
 					</Text>
-					<DateComponent
-						value={
-							navigate
-								? moment(request.travelFrom).format("YYYY-MM-DD")
-								: travelFrom
-						}
-						onDateChange={onDateChange1}
-					/>
+					<DateComponent value={travelFrom} onDateChange={onDateChange1} />
 				</View>
 				<View style={[s.pb1, s.bb, s.b__greyishWhite]}>
 					<Text style={[s.blackishGrey, s.pb4, s.f3, error && s.red]}>
 						{error ? "Invalid End Date" : "End Date"}
 					</Text>
-					<DateComponent
-						value={
-							navigate
-								? moment(request.travelUntil).format("YYYY-MM-DD")
-								: travelUntil
-						}
-						onDateChange={onDateChange2}
-					/>
+					<DateComponent value={travelUntil} onDateChange={onDateChange2} />
 				</View>
 			</View>
 			<Text style={[s.blackishGrey, s.pb4, s.f3]}>Justification</Text>
 			<TextInput
-				value={navigate ? request.justificationText : justification}
+				value={justification}
 				placeholder="Provide justification for your travel..."
 				multiline={true}
 				underlineColorAndroid={"transparent"}

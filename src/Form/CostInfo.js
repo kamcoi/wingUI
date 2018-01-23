@@ -12,9 +12,7 @@ const CostInfo = ({
 	onChangeText2,
 	onChangeText3,
 	onChangeText4,
-	error,
-	request,
-	navigate
+	error
 }) => {
 	return (
 		<View style={[s.bg_white, s.ph4, s.pv5, s.mh4, s.mv3, s.br3]}>
@@ -24,7 +22,7 @@ const CostInfo = ({
 			<View style={[s.flx_row, s.bb, s.b__greyishWhite, s.mb4]}>
 				<Text style={[s.blackishGrey, s.pb4, s.f3, s.pt3, s.pr3]}>RM</Text>
 				<TextInputComponent
-					value={navigate ? request.cost.toString() : cost}
+					value={cost}
 					type={"numeric"}
 					caption="State your cost"
 					onChangeText={onChangeText1}
@@ -36,7 +34,7 @@ const CostInfo = ({
 			<View style={[s.flx_row, s.bb, s.b__greyishWhite, s.mb4]}>
 				<Text style={[s.blackishGrey, s.pb4, s.f3, s.pt3, s.pr3]}>RM</Text>
 				<TextInputComponent
-					value={navigate ? request.budget.toString() : budget}
+					value={budget}
 					type={"numeric"}
 					caption="State your cost"
 					onChangeText={onChangeText2}
@@ -44,7 +42,7 @@ const CostInfo = ({
 			</View>
 			<Text style={[s.blackishGrey, s.pb3, s.f3]}>Cost Category</Text>
 			<Dropdown
-				value={navigate ? request.costCategory : costCategory}
+				value={costCategory}
 				placeholder="e.g. TM Sponsorship"
 				labelHeight={10}
 				label=""
@@ -56,7 +54,7 @@ const CostInfo = ({
 			</Text>
 			<View style={[s.pt1, s.bb, s.b__greyishWhite, s.pb3]}>
 				<TextInputComponent
-					value={navigate ? request.costCentre : costCentre}
+					value={costCentre}
 					type={"default"}
 					caption={
 						costCategory == "Sponsorship (EEIU)"

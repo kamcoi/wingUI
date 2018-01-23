@@ -7,8 +7,6 @@ import { designation } from "../Data";
 import { validatePosition } from "./Validate";
 
 const ApproverInfo = ({
-	navigate,
-	request,
 	requestorPosition,
 	nominator,
 	nominator2,
@@ -20,7 +18,7 @@ const ApproverInfo = ({
 		<View style={[s.bg_white, s.ph4, s.pv4, s.mh4, s.mv3, s.br3]}>
 			<Text style={[s.blackishGrey, s.pb1, s.f3, s.pt3, s.pr3]}>Position</Text>
 			<Dropdown
-				value={navigate ? request.requestorPosition : requestorPosition}
+				value={requestorPosition}
 				placeholder="Select your position.."
 				labelHeight={10}
 				label=""
@@ -29,26 +27,16 @@ const ApproverInfo = ({
 			/>
 			<ApproverList
 				list={requestorPosition}
-				request={request}
 				nominator={nominator}
 				nominator2={nominator2}
 				endorser={endorser}
 				approver={approver}
-				navigate={navigate}
 			/>
 		</View>
 	);
 };
 
-const ApproverList = ({
-	list,
-	request,
-	nominator,
-	nominator2,
-	endorser,
-	approver,
-	navigate
-}) => {
+const ApproverList = ({ list, nominator, nominator2, endorser, approver }) => {
 	let screen;
 	let nominator1Name;
 	let nominator2Name;
@@ -120,33 +108,25 @@ const ApproverList = ({
 				isDisabled={false}
 				test={"+ Add Nominator 1"}
 				details={nominator1Name}
-				data={navigate ? request.nominatorName : nominator}
+				data={nominator}
 			/>
 			<ApproverSingle
-				isDisabled={
-					navigate
-						? !validatePosition(request.requestorPosition)
-						: !validatePosition(list)
-				}
+				isDisabled={!validatePosition(list)}
 				test={"+ Add Nominator 2"}
 				details={nominator2Name}
-				data={
-					navigate
-						? request.nominator2Name
-						: validatePosition(list) ? nominator2 : "None"
-				}
+				data={validatePosition(list) ? nominator2 : "None"}
 			/>
 			<ApproverSingle
 				isDisabled={false}
 				test={"+ Add Endorser"}
 				details={endorserName}
-				data={navigate ? request.endorserName : endorser}
+				data={endorser}
 			/>
 			<ApproverSingle
 				isDisabled={false}
 				test={"+ Add Approver"}
 				details={endorserName}
-				data={navigate ? request.approverName : approver}
+				data={approver}
 			/>
 		</View>
 	);

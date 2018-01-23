@@ -49,6 +49,7 @@ const FormIndex = () => {
 					approverName
 				})
 			}
+			removeStaff={({ deleted }) => console.log({ deleted })}
 			user={user}
 			request={request[0]}
 		/>

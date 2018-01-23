@@ -34,11 +34,9 @@ export function enableButton(
 	return (
 		destination.length > 0 &&
 		travelType.length > 0 &&
-		travelFrom.length > 0 &&
-		travelUntil.length > 0 &&
+		travelFrom.valueOf() < travelUntil.valueOf() &&
 		justification.length > 0 &&
-		cost.length > 0 &&
-		budget.length > 0 &&
+		parseInt(cost) < parseInt(budget) &&
 		costCategory.length > 0 &&
 		costCentre.length > 0 &&
 		nominatorName.length > 0 &&

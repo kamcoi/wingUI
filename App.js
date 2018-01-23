@@ -13,7 +13,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<View style={[s.flx_i]}>
-				<SummaryIndex />
+				<FormIndex />
 			</View>
 		);
 	}
