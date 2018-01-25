@@ -6,46 +6,55 @@ import Check from "react-native-vector-icons/MaterialCommunityIcons";
 import Cancel from "react-native-vector-icons/MaterialIcons";
 
 const TrackingBar = ({ request }) => {
-	return (
-		<View style={[s.flx_row, s.bg_white, s.jcc, s.pv4, s.ph4, s.br4]}>
-			{request.costCategory == "External Sponsorship" && (
+	if (request.status == "eeiu") {
+		return (
+			<View style={[s.bg_lightblue, s.pv4, s.aic, s.br4]}>
+				<Text>Pending EEIU Approval</Text>
+			</View>
+		);
+	} else
+		return (
+			<View style={[s.flx_row, s.bg_white, s.jcc, s.pv4, s.ph4, s.br4]}>
+				{request.costCategory == "External Sponsorship" && (
+					<View style={[s.aic]}>
+						{request.status == "nominate" ||
+						request.status == "endorse" ||
+						request.status == "approve" ||
+						request.status == "approved" ? (
+							<CheckIcon />
+						) : (
+							<CircleIcon />
+						)}
+						<Text style={[s.f4]}>EEIU</Text>
+					</View>
+				)}
+				{request.costCategory == "External Sponsorship" && <Line />}
 				<View style={[s.aic]}>
-					{request.status == "nominate" ||
-					"endorse" ||
-					"approve" ||
-					"approved" ? (
+					{request.status == "endorse" ||
+					request.status == "approve" ||
+					request.status == "approved" ? (
 						<CheckIcon />
 					) : (
 						<CircleIcon />
 					)}
-					<Text style={[s.f4]}>EEIU</Text>
+					<Text style={[s.f4]}>Nominate</Text>
 				</View>
-			)}
-			{request.costCategory == "External Sponsorship" && <Line />}
-			<View style={[s.aic]}>
-				{request.status == "endorse" || "approve" || "approved" ? (
-					<CheckIcon />
-				) : (
-					<CircleIcon />
-				)}
-				<Text style={[s.f4]}>Nominate</Text>
+				<Line />
+				<View style={[s.aic]}>
+					{request.status == "approve" || request.status == "approved" ? (
+						<CheckIcon />
+					) : (
+						<CircleIcon />
+					)}
+					<Text style={[s.f4]}>Endorse</Text>
+				</View>
+				<Line />
+				<View style={[s.aic]}>
+					{request.status == "approved" ? <CheckIcon /> : <CircleIcon />}
+					<Text style={[s.f4]}>Approve</Text>
+				</View>
 			</View>
-			<Line />
-			<View style={[s.aic]}>
-				{request.status == "approve" || "approved" ? (
-					<CheckIcon />
-				) : (
-					<CircleIcon />
-				)}
-				<Text style={[s.f4]}>Endorse</Text>
-			</View>
-			<Line />
-			<View style={[s.aic]}>
-				{request.status == "approved" ? <CheckIcon /> : <CircleIcon />}
-				<Text style={[s.f4]}>Approve</Text>
-			</View>
-		</View>
-	);
+		);
 };
 
 function Line() {
