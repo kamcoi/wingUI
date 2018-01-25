@@ -5,6 +5,49 @@ import Circle from "react-native-vector-icons/Entypo";
 import Check from "react-native-vector-icons/MaterialCommunityIcons";
 import Cancel from "react-native-vector-icons/MaterialIcons";
 
+const TrackingBar = ({ request }) => {
+	return (
+		<View style={[s.flx_row, s.bg_white, s.jcc, s.pv4, s.ph4, s.br4]}>
+			{request.costCategory == "External Sponsorship" && (
+				<View style={[s.aic]}>
+					{request.status == "nominate" ||
+					"endorse" ||
+					"approve" ||
+					"approved" ? (
+						<CheckIcon />
+					) : (
+						<CircleIcon />
+					)}
+					<Text style={[s.f4]}>EEIU</Text>
+				</View>
+			)}
+			{request.costCategory == "External Sponsorship" && <Line />}
+			<View style={[s.aic]}>
+				{request.status == "endorse" || "approve" || "approved" ? (
+					<CheckIcon />
+				) : (
+					<CircleIcon />
+				)}
+				<Text style={[s.f4]}>Nominate</Text>
+			</View>
+			<Line />
+			<View style={[s.aic]}>
+				{request.status == "approve" || "approved" ? (
+					<CheckIcon />
+				) : (
+					<CircleIcon />
+				)}
+				<Text style={[s.f4]}>Endorse</Text>
+			</View>
+			<Line />
+			<View style={[s.aic]}>
+				{request.status == "approved" ? <CheckIcon /> : <CircleIcon />}
+				<Text style={[s.f4]}>Approve</Text>
+			</View>
+		</View>
+	);
+};
+
 function Line() {
 	return (
 		<View style={{ flex: 0.3 }}>
@@ -20,79 +63,12 @@ function Line() {
 	);
 }
 
-class TrackingBar extends React.Component {
-	renderLine() {
-		return <Line />;
-	}
-	render() {
-		const { request } = this.props;
-		if (request.submit == true && request.eeiuApproved == false) {
-			return (
-				<View style={[s.bg_lightblue, s.aic, s.pv4, s.br4]}>
-					<Text>Pending EEIU Approval</Text>
-				</View>
-			);
-		} else
-			return (
-				<View style={[s.flx_row, s.bg_white, s.jcc, s.pv4, s.ph4, s.br4]}>
-					<View style={[s.aic]}>
-						{request.submit == true ? (
-							<Check
-								name="check-circle"
-								size={24}
-								color="green"
-								style={[s.ph4]}
-							/>
-						) : (
-							<Circle name="circle" size={24} color="grey" style={[s.ph4]} />
-						)}
-						<Text style={[s.f4]}>Submit</Text>
-					</View>
-					{this.renderLine()}
-					<View style={[s.aic]}>
-						{request.nominated == true && request.nominated2 == true ? (
-							<Check
-								name="check-circle"
-								size={24}
-								color="green"
-								style={[s.ph4]}
-							/>
-						) : (
-							<Circle name="circle" size={24} color="grey" style={[s.ph4]} />
-						)}
-						<Text style={[s.f4]}>Nominate</Text>
-					</View>
-					{this.renderLine()}
-					<View style={[s.aic]}>
-						{request.endorsed == true ? (
-							<Check
-								name="check-circle"
-								size={24}
-								color="green"
-								style={[s.ph4]}
-							/>
-						) : (
-							<Circle name="circle" size={24} color="grey" style={[s.ph4]} />
-						)}
-						<Text style={[s.f4]}>Endorse</Text>
-					</View>
-					{this.renderLine()}
-					<View style={[s.aic]}>
-						{request.approved == true ? (
-							<Check
-								name="check-circle"
-								size={24}
-								color="green"
-								style={[s.ph4]}
-							/>
-						) : (
-							<Circle name="circle" size={24} color="grey" style={[s.ph4]} />
-						)}
-						<Text style={[s.f4]}>Approve</Text>
-					</View>
-				</View>
-			);
-	}
-}
+const CheckIcon = () => {
+	return <Check name="check-circle" size={24} color="green" style={[s.ph4]} />;
+};
+
+const CircleIcon = () => {
+	return <Circle name="circle" size={24} color="grey" style={[s.ph4]} />;
+};
 
 export default TrackingBar;
