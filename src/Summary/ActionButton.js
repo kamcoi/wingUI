@@ -3,18 +3,16 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { styles as s } from "react-native-style-tachyons";
 
 const ActionButton = ({
-	onPress1,
-	onPress2,
+	rightButton,
+	leftButton,
 	isDisabled,
-	buttonCaption,
-	forSummary,
+	forApproval,
 	request,
-	user,
 	turn
 }) => {
 	return (
 		<View>
-			{!turn && !forSummary ? (
+			{!turn ? (
 				<View style={[s.bg_greydark, s.pv4, s.aic, s.mh4, s.mv3]}>
 					<Text>Waiting for others to approve</Text>
 				</View>
@@ -22,13 +20,13 @@ const ActionButton = ({
 				<View style={[s.flx_row]}>
 					<Button
 						isDisabled={isDisabled}
-						onPress={onPress2}
-						caption={forSummary ? "Edit" : "Revert"}
+						onPress={leftButton}
+						caption={forApproval ? "Revert" : "Cancel"}
 					/>
 					<Button
-						isDisabled={isDisabled}
-						onPress={onPress1}
-						caption={forSummary ? "Submit" : buttonCaption}
+						isDisabled={forApproval ? isDisabled : false}
+						onPress={rightButton}
+						caption={forApproval ? "Approve" : "Submitted!"}
 					/>
 				</View>
 			)}
@@ -52,7 +50,7 @@ const Button = ({ onPress, caption, isDisabled }) => {
 				!isDisabled && s.bg_greydark
 			]}
 		>
-			<Text>{caption}</Text>
+			<Text style={[s.white]}>{caption}</Text>
 		</TouchableOpacity>
 	);
 };

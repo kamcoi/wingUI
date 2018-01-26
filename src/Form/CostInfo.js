@@ -50,14 +50,16 @@ const CostInfo = ({
 				onChangeText={onChangeText3}
 			/>
 			<Text style={[s.blackishGrey, s.pv4, s.f3]}>
-				{costCategory == "Sponsorship (EEIU)" ? "Sponsorsed by" : "Cost Centre"}
+				{costCategory == "External Sponsorship"
+					? "Sponsorsed by"
+					: "Cost Centre"}
 			</Text>
 			<View style={[s.pt1, s.bb, s.b__greyishWhite, s.pb3]}>
 				<TextInputComponent
 					value={costCentre}
 					type={"default"}
 					caption={
-						costCategory == "Sponsorship (EEIU)"
+						costCategory == "External Sponsorship"
 							? "e.g. Khazanah Nasional"
 							: "e.g. BMCE02"
 					}
@@ -87,7 +89,7 @@ const costCategoryData = [
 		value: "Cost Centre"
 	},
 	{
-		value: "Sponsorship (EEIU)"
+		value: "External Sponsorship"
 	}
 ];
 

@@ -4,7 +4,8 @@ import {
 	View,
 	ScrollView,
 	KeyboardAvoidingView,
-	TouchableOpacity
+	TouchableOpacity,
+	Alert
 } from "react-native";
 import { styles as s } from "react-native-style-tachyons";
 import NavigationBar from "react-native-navbar";
@@ -53,7 +54,7 @@ class Form extends React.Component {
 	handleCostCategory({ value }) {
 		this.setState({ costCategory: value });
 		this.setState({
-			eeiuApproved: value === "Sponsorship (EEIU)" ? false : true
+			eeiuApproved: value === "External Sponsorship" ? false : true
 		});
 	}
 	handleApproval({ value }) {
@@ -128,7 +129,6 @@ class Form extends React.Component {
 			height,
 			pressed
 		} = this.state;
-		const fromSummary = false;
 		const errorDate = validateDate(travelFrom, travelUntil) && pressed;
 		const errorCost = validateCost(cost, budget);
 		const isEnabled = enableButton(
@@ -155,7 +155,19 @@ class Form extends React.Component {
 					statusBar={{ tintColor: "#ee7202" }}
 					style={[s.bg_orange]}
 					title={{ title: "New Request", tintColor: "#f8f8ff" }}
-					leftButton={{ title: "Exit", tintColor: "#f8f8ff" }}
+					leftButton={{
+						title: "Exit",
+						tintColor: "#f8f8ff",
+						handler: () =>
+							Alert.alert("Exit Request?", "Request will be saved as Draft", [
+								{
+									text: "Back"
+								},
+								{
+									text: "Confirm"
+								}
+							])
+					}}
 				/>
 				<ScrollView style={[s.flx_i]}>
 					<Segment title={"PROFILE"} thumbnail={"user"} />
