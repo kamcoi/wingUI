@@ -9,15 +9,15 @@ import HomeIndex from "./src/Home/index";
 import FormIndex from "./src/Form/index";
 import SummaryIndex from "./src/Summary/index";
 
-export default class App extends React.Component {
-	render() {
-		return (
-			<View style={[s.flx_i]}>
-				<HomeIndex />
-			</View>
-		);
-	}
-}
+const App = () => {
+	return (
+		<View style={[s.flx_i]}>
+			<HomeIndex />
+		</View>
+	);
+};
+
+export default App;
 
 NativeTachyons.build(
 	{

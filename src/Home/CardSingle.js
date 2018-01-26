@@ -32,6 +32,9 @@ const CardSingle = ({
 			<View style={[s.flx_i, s.pv3, s.ph4, s.mv3, s.br, s.b__greyishWhite]}>
 				<View style={[s.flx_row]}>
 					{status == "draft" && <Text style={[s.f3]}>[Draft] </Text>}
+					{status == "reverted" && (
+						<Text style={[s.f3, s.red]}>[Reverted] </Text>
+					)}
 					<Text style={[s.b, s.pb1]}>{destination}</Text>
 				</View>
 				<Text style={[s.f3, s.pb4]}>{travelType}</Text>
@@ -51,15 +54,17 @@ const CardSingle = ({
 					<Thumbnail thumbnail={"check"} caption={status} />
 				</View>
 			</View>
-			<View style={[s.jcc, s.aic, s.ph4]}>
-				<Text style={[s.f_subheadline]}>{moment(travelFrom).format("D")}</Text>
+			<View
+				style={{ flex: 0.3, justifyContent: "center", alignItems: "center" }}
+			>
+				<Text style={[s.f_subheadline, s.b]}>
+					{moment(travelFrom).format("D")}
+				</Text>
 				<Text>{moment(travelFrom).format("MMM YY")}</Text>
 			</View>
-			{notification == true && (
-				<View style={{ paddingRight: 4 }}>
-					<Circle name="circle" size={10} color="red" />
-				</View>
-			)}
+			<View style={{ flex: 0.05, paddingTop: 4 }}>
+				{notification == true && <Circle name="circle" size={10} color="red" />}
+			</View>
 		</TouchableOpacity>
 	);
 };

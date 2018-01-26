@@ -9,9 +9,9 @@ export const user = {
 export const request = [
 	{
 		id: 1001,
-		notification: true,
+		notification: false,
 		deleted: false,
-		status: "approve",
+		status: "reverted",
 		destination: "Hanoi, Vietnam",
 		travelFrom: 1464671242365,
 		travelUntil: 1465971232365,
